@@ -11,8 +11,7 @@ def get_db():
     finally:
         db.close()
 
-db = SessionLocal
-
-results = crud.get_user(db, user_id=1)
-
-print(results)
+db = SessionLocal()
+user = crud.get_user(db=db, user_id=1)
+db.close()
+print(user)
