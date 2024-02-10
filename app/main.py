@@ -18,7 +18,33 @@ def getUsers():
     db.close
     return users
 
+#main
+def create_user(name : str,email:str):
+    db = SessionLocal()
+    crud.create_user(db=db,name=name, email=email)
+    db.close()
+    
+def print_users_emails(users):
+    # print all the emails of my users 
+    for user in users:
+        print(user.email)
+
+def remove_user(name :str):
+    db = SessionLocal()
+    crud.remove_user(db=db,name=name)
+    db.close()
+
+print ('-----------------')
 todo_users = getUsers()
-# print all the emails of my users 
-for todo_user in todo_users:
-    print(todo_user.email)
+print_users_emails(todo_users)
+print ('-----------------')
+remove_user("Anmol")
+todo_users = getUsers()
+print_users_emails(todo_users)
+print ('-----------------')
+create_user("Anmol", "anmol@angrypeople.com")
+
+todo_users = getUsers()
+print_users_emails(todo_users)
+
+
